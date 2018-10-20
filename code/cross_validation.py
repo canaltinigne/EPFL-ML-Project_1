@@ -22,7 +22,7 @@ def split_cross_validation(y, x, k_indices, k):
     # get k'th subgroup in test, others in train: TODO
     # ***************************************************
     X_test, y_test = x[k_indices[k],:], y[k_indices[k]]
-    X_train = x[k_indices[[x for x in range(len(k_indices)) if x != k]]].reshape(-1,15)
+    X_train = x[k_indices[[x for x in range(len(k_indices)) if x != k]]].reshape(-1,x.shape[1])
     y_train = y[k_indices[[x for x in range(len(k_indices)) if x != k]]].reshape(-1,1)
 
     return X_train, y_train, X_test, y_test
