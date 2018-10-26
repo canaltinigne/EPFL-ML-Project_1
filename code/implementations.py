@@ -11,9 +11,9 @@ def least_squares_GD(y, tx, initial_w, max_iters, gamma):
     for n_iter in range(max_iters):
         dw = compute_gradient(y, tx, w)
         w = w - gamma*dw
-        loss = compute_loss(y, tx, w)
+        #loss = compute_loss(y, tx, w)
 
-    return (w, loss)
+    return (w, 0)
 
 def least_squares_SGD(y, tx, initial_w, max_iters, gamma):
     w = initial_w
@@ -38,15 +38,22 @@ def ridge_regression(y, tx, lambda_):
     
     return (w, loss)
 
-def logistic_regression(y, tx, initial_w, max_iters, gamma):
+def logistic_regression(y, tx, initial_w, max_iters, gamma):    # SGD
+ 
     w = initial_w
+    losses = []
     
     for n_iter in range(max_iters):
         dw = compute_logistic_gradient(y, tx, w)
         w = w - gamma*dw
-        loss = compute_loss(y, tx, w, 'logistic')
+        loss = compute_loss(y, tx, w, t='log')
+        losses.append(loss)
 
-    return (w, loss)
+        if n_iter%100 == 0:
+            print("100 iter completed")
+        #print("iter: {} - loss: {}".format(n_iter, loss))
+
+    return (w, losses)
 
 def reg_logistic_regression(y, tx, lambda_, initial_w, max_iters, gamma):
     w = initial_w
