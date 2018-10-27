@@ -11,9 +11,9 @@ def least_squares_GD(y, tx, initial_w, max_iters, gamma):
     for n_iter in range(max_iters):
         dw = compute_gradient(y, tx, w)
         w = w - gamma*dw
-        #loss = compute_loss(y, tx, w)
+        loss = compute_loss(y, tx, w)
 
-    return (w, 0)
+    return (w, loss)
 
 def least_squares_SGD(y, tx, initial_w, max_iters, gamma):
     w = initial_w

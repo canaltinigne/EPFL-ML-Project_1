@@ -63,23 +63,22 @@ def cross_validation(y, X, fold, h_pars={}, model='ridge', seed=23):
                 accuracy_te.append(np.array([thr, lambda_, np.mean(test_err)]))
 
     elif model == 'least':
-        for thr in h_pars['threshold']:
-            
-            train_err = []
-            test_err = []
-            
-            for k in range(fold):
-                X_train, y_train, X_valid, y_valid = split_cross_validation(y, X, k_indices, k)
-                w, _ = least_squares(y_train, X_train)
+        
+        train_err = []
+        test_err = []
+        
+        for k in range(fold):
+            X_train, y_train, X_valid, y_valid = split_cross_validation(y, X, k_indices, k)
+            w, _ = least_squares(y_train, X_train)
 
-                pred_tr_y = predict_labels(w, X_train, thr)
-                pred_te_y = predict_labels(w, X_valid, thr)
+            pred_tr_y = predict_labels(w, X_train, thr)
+            pred_te_y = predict_labels(w, X_valid, thr)
 
-                train_err.append(accuracy(pred_tr_y, y_train))
-                test_err.append(accuracy(pred_te_y, y_valid))
-            
-            accuracy_tr.append(np.array([thr, np.mean(train_err)]))
-            accuracy_te.append(np.array([thr, np.mean(test_err)]))
+            train_err.append(accuracy(pred_tr_y, y_train))
+            test_err.append(accuracy(pred_te_y, y_valid))
+        
+        accuracy_tr.append(np.array([thr, np.mean(train_err)]))
+        accuracy_te.append(np.array([thr, np.mean(test_err)]))
 
     elif model == 'log':
         initial_w = np.random.normal(0,1,X.shape[1])

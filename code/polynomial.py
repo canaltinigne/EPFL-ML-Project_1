@@ -1,9 +1,12 @@
 import numpy as np
 
-def build_poly(x, degree):
-    temp_arr = np.ones(len(x.shape[0]))
-    for i in range(1, degree+1):
-        arr = np.power(x, i)
-        temp_arr = np.column_stack((temp_arr, arr))
-        
-    return temp_arr
+def build_poly(X, degree):
+
+    temp_arr = np.ones(X.shape[0])
+
+    for i in range(X.shape[1]):
+        for j in range(2, degree+1):
+            new_col = X[:,i]**j
+            temp_arr = np.column_stack((temp_arr, new_col))
+      
+    return np.column_stack((X, temp_arr))

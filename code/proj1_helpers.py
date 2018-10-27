@@ -25,7 +25,7 @@ def load_csv_data(data_path, sub_sample=False):
     return yb, input_data, ids, np.asarray(feature_names[2:])
 
 
-def predict_labels(weights, data, threshold=0, model='reg'):
+def predict_labels(weights, data, model='reg'):
     """Generates class predictions given weights, and a test data matrix"""
     y_pred = []
     
@@ -35,8 +35,8 @@ def predict_labels(weights, data, threshold=0, model='reg'):
         y_pred[np.where(y_pred > 0.5)] = 1
     else:
         y_pred = np.dot(data, weights)
-        y_pred[np.where(y_pred <= threshold)] = -1
-        y_pred[np.where(y_pred > threshold)] = 1
+        y_pred[np.where(y_pred <= 0)] = -1
+        y_pred[np.where(y_pred > 0)] = 1
     
     return y_pred
 
