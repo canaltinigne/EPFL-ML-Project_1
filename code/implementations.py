@@ -38,19 +38,19 @@ def ridge_regression(y, tx, lambda_):
     
     return (w, loss)
 
-def logistic_regression(y, tx, initial_w, max_iters, gamma):    # SGD
+def logistic_regression(y, tx, initial_w, max_iters, gamma):    # GD
  
     w = initial_w
     losses = []
-    
     for n_iter in range(max_iters):
+
         dw = compute_logistic_gradient(y, tx, w)
         w = w - gamma*dw
         loss = compute_loss(y, tx, w, t='log')
         losses.append(loss)
 
-        if n_iter%100 == 0:
-            print("100 iter completed")
+        # if n_iter%100 == 0:
+        #    print("100 iter completed")
         #print("iter: {} - loss: {}".format(n_iter, loss))
 
     return (w, losses)
