@@ -49,10 +49,6 @@ def logistic_regression(y, tx, initial_w, max_iters, gamma):    # GD
         loss = compute_loss(y, tx, w, t='log')
         losses.append(loss)
 
-        # if n_iter%100 == 0:
-        #    print("100 iter completed")
-        #print("iter: {} - loss: {}".format(n_iter, loss))
-
     return (w, losses)
 
 def reg_logistic_regression(y, tx, lambda_, initial_w, max_iters, gamma):
