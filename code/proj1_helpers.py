@@ -31,7 +31,7 @@ def predict_labels(weights, data, model='reg'):
     
     if model == 'log':                                      # For Logistic regression prediction
         y_pred = sigmoid(np.dot(data, weights))
-        y_pred[np.where(y_pred <= 0.5)] = -1
+        y_pred[np.where(y_pred <= 0.5)] = 0
         y_pred[np.where(y_pred > 0.5)] = 1
     else:
         y_pred = np.dot(data, weights)
