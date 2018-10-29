@@ -1,5 +1,6 @@
 import numpy as np
 
+# Build polynomial dataset with the given degree
 def build_poly(X, degree):
 
     temp_arr = np.ones(X.shape[0])
