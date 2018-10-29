@@ -7,16 +7,14 @@ def calculate_mse(e):
 def calculate_mae(e):
     return np.mean(np.abs(e))
 
-def log_loss(y, pred, w, lambda_):
-    return -1*np.mean(y*np.log(pred) + (1-y)*np.log(1-pred)) # + lambda_*np.dot(w.T, w) Regularized
+def log_loss(y, tx, w, lambda_):
+    pred = sigmoid(np.dot(tx, w))
+    return -1*np.mean(np.add(np.multiply(y,np.log(pred)), np.multiply((1-y),np.log(1-pred)))) + lambda_*np.dot(w.T, w)
 
 def compute_loss(y, tx, w, t='mse', lambda_=0):
-    e = y - np.dot(tx, w)
-
     if t == 'mae':
-        return calculate_mae(e)
+        return calculate_mae(y - np.dot(tx, w))
     elif t == 'log':
-        pred = sigmoid(np.dot(tx, w))
-        return log_loss(y, pred, w, lambda_)
+        return log_loss(y, tx, w, lambda_)
     else:
-        return calculate_mse(e)
+        return calculate_mse(y - np.dot(tx, w))
