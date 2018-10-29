@@ -14,7 +14,7 @@ def load_csv_data(data_path, sub_sample=False):
 
     # convert class labels from strings to binary (-1,1)
     yb = np.ones(len(y))
-    yb[np.where(y=='b')] = 0
+    yb[np.where(y=='b')] = 0        # Change -1 to 0
     
     # sub-sample
     if sub_sample:
@@ -29,7 +29,7 @@ def predict_labels(weights, data, model='reg'):
     """Generates class predictions given weights, and a test data matrix"""
     y_pred = []
     
-    if model == 'log':
+    if model == 'log':                                      # For Logistic regression prediction
         y_pred = sigmoid(np.dot(data, weights))
         y_pred[np.where(y_pred <= 0.5)] = -1
         y_pred[np.where(y_pred > 0.5)] = 1
