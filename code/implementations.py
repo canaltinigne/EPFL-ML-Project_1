@@ -21,10 +21,11 @@ def least_squares_GD(y, tx, initial_w, max_iters, gamma):
 def least_squares_SGD(y, tx, initial_w, max_iters, gamma):
     w = initial_w.reshape(-1,1)
     y = y.reshape(-1,1)
+    np.random.seed(23)
 
     for n_iter in range(max_iters):
         rnd_i = np.random.randint(0, len(y))                # Choose random element in the dataset
-        dw = compute_gradient(y[rnd_i], tx[rnd_i], w)
+        dw = compute_gradient(y[rnd_i], tx[rnd_i,:].reshape(1,-1), w)
         w = w - gamma*dw
         loss = compute_loss(y, tx, w)
 

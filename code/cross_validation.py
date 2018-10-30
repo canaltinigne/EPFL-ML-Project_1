@@ -42,13 +42,13 @@ def cross_validation(y, X, fold, h_pars={}, model='ridge', seed=23):
     accuracy_tr = []
     accuracy_te = []
 
-    if model == 'ridge':                                                              # Different models
+    if model == 'ridge':                                                                # Different models
         for lambda_ in h_pars['lambda']:                                                # Different hyperparameters
             
             train_err = []
             test_err = []
             
-            for k in range(fold):
+            for k in range(fold):                                                                   # K fold, add accuracy for each fold
                 X_train, y_train, X_valid, y_valid = split_cross_validation(y, X, k_indices, k)
                 w, _ = ridge_regression(y_train, X_train, lambda_)
     
@@ -58,7 +58,7 @@ def cross_validation(y, X, fold, h_pars={}, model='ridge', seed=23):
                 train_err.append(accuracy(pred_tr_y, y_train))                                      
                 test_err.append(accuracy(pred_te_y, y_valid))
             
-            accuracy_tr.append(np.array([lambda_, np.mean(train_err)]))                 # Add the accuracy mean for given hyperparameters
+            accuracy_tr.append(np.array([lambda_, np.mean(train_err)]))                 # Add the mean accuracy for given hyperparameters
             accuracy_te.append(np.array([lambda_, np.mean(test_err)]))
 
     elif model == 'least':

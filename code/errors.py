@@ -14,6 +14,7 @@ def log_loss(y, tx, w, lambda_=0):
     pred = sigmoid(np.dot(tx, w))
     return (-1*np.mean(np.add(np.multiply(y,np.log(pred)), np.multiply((1-y),np.log(1-pred)))) + lambda_*np.dot(w.T, w)).flatten()[0]  #Also works for regularized logistic regression when lambda_ > 0
 
+# General loss function
 def compute_loss(y, tx, w, t='mse', lambda_=0):
     if t == 'mae':
         return calculate_mae(y - np.dot(tx, w))
