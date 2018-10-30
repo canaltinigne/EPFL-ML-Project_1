@@ -12,16 +12,16 @@ We have separated our code to improve modularity. For data analysis, feature eng
 
 # Python files
 
-cross_validation.py : Methods for building indices, splitting dataset and cross validation for different models are implemented.
+**cross_validation.py :** Methods for building indices, splitting dataset and cross validation for different models are implemented.
 
-errors.py : Calculation of MSE, MAE, log loss provided. 
+**errors.py** : Calculation of MSE, MAE, log loss provided. 
 
-gradient.py : Gradient and logistic gradient calculations reside here.
+**gradient.py :** Gradient and logistic gradient calculations reside here.
 
-implementations.py : The 6 basic method implementations are implemented.
+**implementations.py :** The 6 basic method implementations are implemented.
 
-polynomial.py :  Builds polynomial dataset with the given degree.
+**polynomial.py :**  Builds polynomial dataset with the given degree.
 
-proj1_helpers.py : Loading and writing to csv functions are provided.
+**proj1_helpers.py :** Loading and writing to csv functions are provided.
 
-run.py : The py version of the Test Set Prediction Notebook. The features are selected according to the process explained in the project report. The test set is also divided into subsets. The features that have meaningless values according to the PRI_jet_num category also deleted from these sets. Since our model takes a long time to train from the beginning, we have added a flag at the top of the script. By disabling it, you can produce predictions with pretrained weights by loading the weights.
+**run.py :** The py version of the Test Set Prediction Notebook. The features are selected according to the process explained in the project report. The test set is also divided into subsets. The features that have meaningless values according to the PRI_jet_num category also deleted from these sets. Since our model takes a long time to train from the beginning, we have added a flag at the top of the script. By disabling it, you can produce predictions with pretrained weights by loading the weights.
